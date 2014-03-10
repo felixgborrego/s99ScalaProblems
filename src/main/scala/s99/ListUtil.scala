@@ -214,4 +214,24 @@ object ListUtil {
       (duplicated.length, duplicated.head) :: encodeDirect(tail)
     }
   }
+
+  /**
+   * P14 (*) Duplicate the elements of a list.
+   * Example:
+   * scala> duplicate(List('a, 'b, 'c, 'c, 'd))
+   * res0: List[Symbol] = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
+   */
+  def duplicate[A](l: List[A]) = {
+    duplicateN(2, l)
+  }
+
+  /**
+   * P15 (**) Duplicate the elements of a list a given number of times.
+   * Example:
+   * scala> duplicateN(2,List('a, 'b, 'c, 'c, 'd))
+   * res0: List[Symbol] = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
+   */
+  def duplicateN[A](times: Int, l: List[A]) = {
+    l.flatMap { List.fill(times)(_) }
+  }
 }

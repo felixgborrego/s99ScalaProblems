@@ -145,7 +145,15 @@ class ListUtilSpec extends FlatSpec with Matchers {
   "encodeDirect" should "perform a Run-length encoding of a list" in {
     val encoded = encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
     assert(encoded == List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+  }
 
+  info("P14 (*) Duplicate the elements of a list.")
+  info("P15 (**) Duplicate the elements of a list a given number of times.")
+  "duplicate" should "perform a Run-length encoding of a list" in {
+    val duplicated = duplicate(List('a, 'b, 'c, 'c, 'd))
+    assert(duplicated == List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd))
+    val duplicatedN = duplicateN(3, List('a, 'b, 'c, 'c, 'd))
+    assert(duplicatedN == List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd))
   }
 
 }
