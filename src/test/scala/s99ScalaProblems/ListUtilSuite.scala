@@ -138,6 +138,7 @@ class ListUtilSpec extends FlatSpec with Matchers {
   "decode" should "decode the encoded list" in {
     val encoded = List((3, 'a'), (3, 'b'), (2, 'c'))
     assert(decode(encoded) == List('a', 'a', 'a', 'b', 'b', 'b', 'c', 'c'))
+    assert(decodeFlat(encoded) == List('a', 'a', 'a', 'b', 'b', 'b', 'c', 'c'))
   }
 
 }
