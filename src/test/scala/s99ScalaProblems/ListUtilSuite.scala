@@ -91,20 +91,20 @@ class ListUtilSpec extends FlatSpec with Matchers {
   info("P07 (**) Flatten a nested list structure.")
   "flattenList" should "flatten a list of list into a list" in {
     val listOfList = List(List(1, 2), List(3, 4))
-    var flatList = List(1, 2, 3, 4)
+    val flatList = List(1, 2, 3, 4)
     assert(flattenList(listOfList) == flatList)
   }
 
   "flattenAny" should "flatten a list of any into a list" in {
     val listOfList = List(List(1, 2), List(3, List(4, 5)))
-    var flatList = List(1, 2, 3, 4, 5)
+    val flatList = List(1, 2, 3, 4, 5)
     assert(flattenAny(listOfList) == flatList)
   }
 
   info("P08 (**) Eliminate consecutive duplicates of list elements.")
   "removeDuplicate" should "eliminate consecutive duplicates of a list of elements" in {
-    var list = List(1, 1, 1, 2, 2, 2, 3, 3)
-    var listClean = List(1, 2, 3)
+    val list = List(1, 1, 1, 2, 2, 2, 3, 3)
+    val listClean = List(1, 2, 3)
     assert(removeDuplicate(list) == listClean)
   }
 
@@ -126,6 +126,18 @@ class ListUtilSpec extends FlatSpec with Matchers {
     var packed = List(List(1, 1, 1), List(2, 2, 2), List(3, 3))
     var encoded = List((3, 1), (3, 2), (2, 3))
     assert(encode(packed) == encoded)
+  }
+
+  info("P11 (*) Modified run-length encoding.")
+  "encodeModified" should "implement a so-called run-length encoding data compression method, but if an element has no duplicates it is simply copied into the result list" in {
+    val encoded = encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+    assert(encoded == List((4, 'a), 'b, (2, 'c), (2, 'a), 'd, (4, 'e)))
+  }
+
+  info("P12 (**) Decode a run-length encoded list.")
+  "decode" should "decode the encoded list" in {
+    val encoded = List((3, 'a'), (3, 'b'), (2, 'c'))
+    assert(decode(encoded) == List('a', 'a', 'a', 'b', 'b', 'b', 'c', 'c'))
   }
 
 }
