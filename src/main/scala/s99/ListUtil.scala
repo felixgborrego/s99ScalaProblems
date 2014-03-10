@@ -199,4 +199,19 @@ object ListUtil {
     encoded.flatMap(x => List.fill(x._1)(x._2))
   }
 
+  /**
+   * P13 (**) Run-length encoding of a list (direct solution).
+   * Implement the so-called run-length encoding data compression method directly.
+   *  I.e. don't use other methods you've written (like P09's pack); do all the work directly.
+   * Example:
+   * scala> encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+   * res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+   */
+  def encodeDirect[A](l: List[A]): List[(Int, A)] = {
+    if (l.isEmpty) Nil
+    else {
+      val (duplicated, tail) = l.span(_ == l.head)
+      (duplicated.length, duplicated.head) :: encodeDirect(tail)
+    }
+  }
 }

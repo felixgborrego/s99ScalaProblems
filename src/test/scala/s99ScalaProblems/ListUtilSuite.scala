@@ -141,4 +141,11 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(decodeFlat(encoded) == List('a', 'a', 'a', 'b', 'b', 'b', 'c', 'c'))
   }
 
+  info("P13 (**) Run-length encoding of a list (direct solution)..")
+  "encodeDirect" should "perform a Run-length encoding of a list" in {
+    val encoded = encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+    assert(encoded == List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+
+  }
+
 }
