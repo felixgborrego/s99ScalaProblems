@@ -1,0 +1,160 @@
+package s99
+
+import scala.collection.immutable.List
+import scala.collection.immutable.Nil
+import java.util.NoSuchElementException
+
+object ListUtil {
+
+  /**
+   * Return the last item of the given list.
+   */
+  def last[A](l: List[A]) = l match {
+    case Nil => throw new NoSuchElementException
+    case _ => l.last
+  }
+
+  /**
+   * Return the last but one element of a list.
+   */
+  def penultimate[A](l: List[A]) = l match {
+    case Nil => throw new NoSuchElementException
+    case head :: Nil => throw new NoSuchElementException
+    case _ => l.takeRight(2).head
+  }
+
+  /**
+   * Return the last but one element of a list using a recursive approach.
+   */
+  def penultimateRecursive[A](l: List[A]): A = l match {
+    case h :: x :: Nil => h
+    case x :: tail => penultimateRecursive(tail)
+    case Nil => throw new NoSuchElementException
+  }
+
+  /**
+   * Return the n element in the list.
+   */
+  def nth[A](i: Int, l: List[A]): A = l match {
+    case x :: tial => i match {
+      case 0 => l.head
+      case _ => nth(i - 1, tial)
+    }
+    case Nil => throw new NoSuchElementException
+  }
+
+  /**
+   * Return the number of element in the list using a recursive approach.
+   * instead of using list.length
+   */
+  def lengthRecoursive[A](l: List[A]): Int = l match {
+    case x :: tail => 1 + lengthRecoursive(tail)
+    case _ => 0
+  }
+
+  def lengthNative[A](l: List[A]) = {
+    l.length
+  }
+
+  /**
+   * Return the reversed list using a recursive approach
+   * instead of using list.reverse
+   */
+  def reverseList[A](l: List[A]): List[A] = l match {
+    case Nil => Nil
+    case x :: tail => reverseList(tail) ::: List(x)
+  }
+
+  def reverseListNative[A](l: List[A]) {
+    l.reverse
+  }
+
+  /**
+   * Detect whether a list if a palindrome
+   */
+  def palindrome[A](l: List[A]): Boolean = {
+    val halfIndex = l.length / 2
+    val listHead = l.take(halfIndex)
+    val listTail = l.takeRight(halfIndex).reverse
+    listHead == listTail
+  }
+
+  /**
+   * Return a flatten list
+   */
+  def flattenList[A](l: List[List[A]]): List[A] = {
+    l.flatten
+  }
+
+  /**
+   * Return a flatten list of a list of list.
+   */
+  def flattenAny(l: List[Any]): List[Any] = l flatMap {
+    case x: List[Any] => flattenAny(x)
+    case item => List(item)
+  }
+
+  /**
+   * Remove duplicate elements in the list.
+   * If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.
+   * Ex: List(1,1,2,2,3) -> List(1,2,3)
+   */
+  def removeDuplicate[A](l: List[A]): List[A] = l match {
+    case x :: y :: tail =>
+      if (x == y) removeDuplicate(x :: tail) else x :: removeDuplicate(y :: tail)
+    case _ => l
+  }
+
+  /**
+   * Pack consecutive duplicates of list elements into sublists.
+   * The method packDuplicate is a better implementation.
+   *
+   * Example:
+   *  For: List(1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 4, 4)
+   *  Res: List(1, List(2, 2, 2, 2, 2, 2, 2, 2), List(3, 3), 2, List(4, 4)
+   *
+   */
+  def packDuplicateList(l: List[Any]): List[Any] = l match {
+    case x :: y :: tail =>
+      if (x == y)
+        packDuplicateList(List(x, y) :: tail)
+      else
+        x match {
+          case list: List[Any] => {
+            if (list.contains(y)) {
+              packDuplicateList((list :+ y) :: tail)
+            } else {
+              x :: packDuplicateList(y :: tail)
+            }
+          }
+          case _ => x :: packDuplicateList(y :: tail)
+
+        }
+    case _ => l
+  }
+
+  /**
+   * Pack consecutive duplicates of list elements into sublists.
+   * Example:
+   *  For: List(1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 4, 4)
+   *  Res: List(1, List(2, 2, 2, 2, 2, 2, 2, 2), List(3, 3), 2, List(4, 4)
+   */
+  def packDuplicate(l: List[Any]): List[Any] = {
+    if (l.isEmpty) Nil
+    else {
+      val (duplicated, tail) = l.span(_ == l.head)
+      if (duplicated.size == 1) duplicated.head :: packDuplicate(tail)
+      else duplicated :: packDuplicate(tail)
+    }
+  }
+
+  /**
+   * P10 (*) Run-length encoding of a list.
+   * Use the result of problem P09 to implement the so-called run-length encoding data compression method.
+   *  Consecutive duplicates of elements are encoded as tuples (N, E) where N is the number of duplicates of the element E.
+   */
+  def encode[A](l: List[List[A]]) = {
+    l.map(l => (l.size, l.head))
+  }
+
+}
