@@ -234,4 +234,15 @@ object ListUtil {
   def duplicateN[A](times: Int, l: List[A]) = {
     l.flatMap { List.fill(times)(_) }
   }
+
+  /**
+   * P16 (**) Drop every Nth element from a list.
+   * Example:
+   * scala> drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+   * res0: List[Symbol] = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+   */
+  def drop[A](i: Int, l: List[A]) = {
+    l.zipWithIndex.filterNot(_._2 % i == 2).unzip._1
+  }
+
 }

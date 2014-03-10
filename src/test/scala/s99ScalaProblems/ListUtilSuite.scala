@@ -156,4 +156,10 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(duplicatedN == List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd))
   }
 
+  info("P16 (**) Drop every Nth element from a list.")
+  "drop" should "drop every Nth element from a list." in {
+    val droped = drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    assert(droped == List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k))
+  }
+
 }
