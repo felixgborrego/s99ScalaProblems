@@ -196,4 +196,10 @@ class ListUtilSpec extends FlatSpec with Matchers {
     val inserted = insertAt('new, 1, List('a, 'b, 'c, 'd))
     assert(inserted == List('a, 'new, 'b, 'c, 'd))
   }
+
+  info("P22 (*) Create a list containing all integers within a given range.")
+  "range" should "create a list containing all integers with a given range" in {
+    val ranged = rangeBuildIn(4, 9)
+    assert(ranged == List(4, 5, 6, 7, 8, 9))
+  }
 }
