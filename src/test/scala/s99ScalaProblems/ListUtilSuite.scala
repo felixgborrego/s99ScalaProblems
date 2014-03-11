@@ -202,4 +202,17 @@ class ListUtilSpec extends FlatSpec with Matchers {
     val ranged = rangeBuildIn(4, 9)
     assert(ranged == List(4, 5, 6, 7, 8, 9))
   }
+
+  info("P23 (**) Extract a given number of randomly selected elements from a list.")
+  "randomSelect" should "extrat a given number of randomly elements" in {
+    val selected = randomSelect(3, List('a, 'b, 'c, 'd, 'f, 'g, 'h))
+    assert(selected.length == 3)
+  }
+
+  info("P24 (*) Lotto: Draw N different random numbers from the set 1..M.")
+  "lotto" should "return N different random number from the list set 1..M" in {
+    val list = lotto(6, 49)
+    assert(list.length == 6)
+  }
+
 }

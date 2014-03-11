@@ -3,6 +3,7 @@ package s99
 import scala.collection.immutable.List
 import scala.collection.immutable.Nil
 import java.util.NoSuchElementException
+import scala.util.Random
 
 object ListUtil {
 
@@ -329,5 +330,33 @@ object ListUtil {
    */
   def rangeBuildIn(x: Int, y: Int) = {
     x.to(y).toList
+  }
+
+  /**
+   * P23 (**) Extract a given number of randomly selected elements from a list.
+   * Example:
+   * scala> randomSelect(3, List('a, 'b, 'c, 'd, 'f, 'g, 'h))
+   * res0: List[Symbol] = List('e, 'd, 'a)
+   * Hint: Use the solution to problem P20
+   */
+  def randomSelect[A](n: Int, l: List[A]): List[A] = n match {
+    case x if x > 0 => {
+      val rIndex = util.Random.nextInt(l.size)
+      val (list, removed) = removeAt(rIndex, l)
+      removed :: randomSelect(n - 1, list)
+    }
+    case _ => Nil
+
+  }
+
+  /**
+   * P24 (*) Lotto: Draw N different random numbers from the set 1..M.
+   * Example:
+   * scala> lotto(6, 49)
+   * res0: List[Int] = List(23, 1, 17, 33, 21, 37)
+   */
+  def lotto(n: Int, max: Int): List[Int] = n match {
+    case x if x > 0 => util.Random.nextInt(max) :: lotto(n - 1, max)
+    case _ => Nil
   }
 }
