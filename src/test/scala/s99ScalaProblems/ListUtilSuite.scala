@@ -169,4 +169,10 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(splited2 == List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   }
 
+  info("18 (**) Extract a slice from a list.")
+  "slice" should "extrat a slice from a list" in {
+    val sliced = slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    assert(sliced == List('d, 'e, 'f, 'g))
+  }
+
 }
