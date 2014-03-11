@@ -162,4 +162,11 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(droped == List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k))
   }
 
+  info("P17 (*) Split a list into two parts.")
+  "split" should "split a list in two parts." in {
+    val (splited1, splited2) = split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    assert(splited1 == List('a, 'b, 'c))
+    assert(splited2 == List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+  }
+
 }
