@@ -266,6 +266,6 @@ object ListUtil {
    * res0: List[Symbol] = List('d, 'e, 'f, 'g)
    */
   def slice[A](i: Int, k: Int, l: List[A]) = {
-    l.drop(i).take(k)
+    l.drop(i).take(k - (i max 0))
   }
 }
