@@ -268,4 +268,18 @@ object ListUtil {
   def slice[A](i: Int, k: Int, l: List[A]) = {
     l.drop(i).take(k - (i max 0))
   }
+
+  /**
+   * P19 (**) Rotate a list N places to the left.
+   * Examples:
+   * scala> rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+   * res0: List[Symbol] = List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c)
+   *
+   * scala> rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+   * res1: List[Symbol] = List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
+   */
+  def rotate[A](n: Int, l: List[A]) = n match {
+    case x if x < 0 => l.takeRight(n * -1) ::: l.dropRight(n * -1)
+    case _ => l.drop(n) ::: l.take(n)
+  }
 }

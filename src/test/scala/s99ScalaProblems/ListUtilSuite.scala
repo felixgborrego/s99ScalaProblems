@@ -175,4 +175,14 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(sliced == List('d, 'e, 'f, 'g))
   }
 
+  info("P19 (**) Rotate a list N places to the left.")
+  "rotate" should "rotate a list N paces to the left" in {
+    val rotated1 = rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    assert(rotated1 == List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c))
+
+    val rotated2 = rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    assert(rotated2 == List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i))
+
+  }
+
 }
