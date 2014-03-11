@@ -185,4 +185,10 @@ class ListUtilSpec extends FlatSpec with Matchers {
 
   }
 
+  info("P20 (*) Remove the Kth element from a list.")
+  "removeAt" should "remove the kth element from a list" in {
+    val removed = removeAt(1, List('a, 'b, 'c, 'd))
+    assert(removed == (List('a, 'c, 'd), 'b))
+  }
+
 }
