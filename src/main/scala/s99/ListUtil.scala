@@ -309,4 +309,15 @@ object ListUtil {
       case _ => throw new NoSuchElementException
     }
   }
+
+  /**
+   * P21 (*) Insert an element at a given position into a list.
+   * Example:
+   * scala> insertAt('new, 1, List('a, 'b, 'c, 'd))
+   * res0: List[Symbol] = List('a, 'new, 'b, 'c, 'd)
+   */
+  def insertAt[A](value: A, i: Int, l: List[A]) = {
+    val (pre, pos) = l.splitAt(i);
+    (pre :+ value) ::: pos
+  }
 }

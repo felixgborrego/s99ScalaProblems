@@ -191,4 +191,9 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(removed == (List('a, 'c, 'd), 'b))
   }
 
+  info("P21 (*) Insert an element at a given position into a list.")
+  "insertAt" should "remove the kth element from a list" in {
+    val inserted = insertAt('new, 1, List('a, 'b, 'c, 'd))
+    assert(inserted == List('a, 'new, 'b, 'c, 'd))
+  }
 }
