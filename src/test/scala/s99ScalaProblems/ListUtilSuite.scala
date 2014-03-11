@@ -215,4 +215,10 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(list.length == 6)
   }
 
+  info("P25 (*) Generate a random permutation of the elements of a list.")
+  "randomPermute" should "generate a random permutation of the elements of a list" in {
+    val list = randomPermute(List('a, 'b, 'c, 'd, 'e, 'f))
+    assert(list.length == 6)
+  }
+
 }
