@@ -221,4 +221,12 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(list.length == 6)
   }
 
+  
+    info("P26 (*) Generate the combinations of k distinct object chosen from the N elements of a list.")
+    "combinations" should "generate all the ways we can get K element choosend from the group" in {
+      val list = List('a, 'b, 'c, 'd, 'e, 'f,'g,'h,'i,'j,'k,'l)
+      val groups = combinations(3,list)
+      println(groups)
+      assert(groups.length == 1320) // combinations of 12 elements, chosen 3, with order
+  }
 }

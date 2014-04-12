@@ -4,6 +4,7 @@ import scala.collection.immutable.List
 import scala.collection.immutable.Nil
 import java.util.NoSuchElementException
 import scala.util.Random
+import scala.collection.mutable.ListBuffer
 
 object ListUtil {
 
@@ -382,8 +383,20 @@ object ListUtil {
    *   scala> combinations(3, List('a, 'b, 'c, 'd, 'e, 'f))
    *   res0: List[List[Symbol]] = List(List('a, 'b, 'c), List('a, 'b, 'd), List('a, 'b, 'e), ...
    */
-  def combinations[A](s: Int, l: List[A]): List[List[A]] = {
-    ???
+  def combinations[A](s: Int, l: List[A]): List[List[A]] =  {
+    val combinationsList =new  ListBuffer[List[A]]
+    combinations(s,Nil,l,combinationsList)
+    combinationsList.toList
+  }
+  
+  def combinations[A] (s:Int, combination:List[A],l:List[A],combinationsList:ListBuffer[List[A]]): Unit =  s match {
+  	case 0 => { combinationsList+=combination }
+    case _ => {
+    	l.foreach( e => {
+    		var subList = l.diff(List(e))
+            combinations(s-1,e::combination,subList,combinationsList)
+        })
+    }
   }
 
 }
