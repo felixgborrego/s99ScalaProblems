@@ -221,12 +221,34 @@ class ListUtilSpec extends FlatSpec with Matchers {
     assert(list.length == 6)
   }
 
-  
-    info("P26 (*) Generate the combinations of k distinct object chosen from the N elements of a list.")
-    "combinations" should "generate all the ways we can get K element choosend from the group" in {
-      val list = List('a, 'b, 'c, 'd, 'e, 'f,'g,'h,'i,'j,'k,'l)
-      val groups = combinations(3,list)
-      println(groups)
-      assert(groups.length == 1320) // combinations of 12 elements, chosen 3, with order
+  info("P26 (*) Generate the combinations of k distinct object chosen from the N elements of a list.")
+  "combinations" should "generate all the ways we can get K element choosend from the group" in {
+    val list = List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'l)
+    val groups = combinations(3, list)
+    println(groups)
+    assert(groups.length == 1320) // combinations of 12 elements, chosen 3, with order
+  }
+
+  info("P27 (**) Group the elements of a set into disjoint subsets.")
+  "group" should "generate all the ways can a group of 9 people work in 3 disjoint subgroups of 2,3 and 4 persons" in {
+
+    val sizeGroups = List(2, 3, 4)
+    val names = List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida")
+
+    val groupsList = group(sizeGroups, names)
+    //groupsList.foreach(g => println("- " + g))
+
+    // 3 groups per row
+    assert(groupsList.head.length == groupsList.last.length)
+    assert(groupsList.head.length == 3)
+
+    println("Fisrt group: " + groupsList.head)
+
+    // each group with the expected size 
+    assert(groupsList.head(0).length == 4)
+    assert(groupsList.head(1).length == 3)
+    assert(groupsList.head(2).length == 2)
+
+    assert(groupsList.length == 362880) // combinations of 12 elements, chosen 3, with order
   }
 }
