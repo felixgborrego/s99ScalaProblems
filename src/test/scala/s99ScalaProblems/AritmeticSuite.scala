@@ -35,5 +35,10 @@ class AritmeticUtilSpec extends FlatSpec with Matchers {
   "35.isCoprimeTo(64)" should "return true" in {
     assert(35.isCoprimeTo(64))
   }
+  
+  info("P34 (**) Calculate Euler's totient function phi(m).")
+   "10.totient" should "return 4" in {
+     assert( 10.totient == 4)
+  }   
 
 }
