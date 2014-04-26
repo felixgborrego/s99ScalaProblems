@@ -4,7 +4,7 @@ This is a pet project to learn Scala while I'm trying to code my own implementat
 
 You can find more information at http://aperiodic.net/phil/scala/s-99/
 
-So far, I have implemented 27 of 99.
+So far, I have implemented 33 of 99.
 
 ## Project Setup
 
