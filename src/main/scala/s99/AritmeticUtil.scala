@@ -29,6 +29,29 @@ object AritmeticUtils {
      */
     def totient = (1 to number).toStream.filter(_.isCoprimeTo(number)).size
 
+    /**
+     *  P35 (**) Determine the prime factors of a given positive integer.
+     * Construct a flat list containing the prime factors in ascending order.
+     */
+    def primeFactors: List[Int] = {
+      val factors = primes.filter(number % _ == 0)
+      if (factors.isEmpty) {
+        Nil
+      } else {
+        val prime = factors.head
+        prime :: (number / prime).primeFactors
+      }
+
+    }
+
+    def primes = (2 to number).toStream.filter(_.isPrime)
+
+    /**
+     * P36 (**) Determine the prime factors of a given positive integer (2).
+     * Construct a list containing the prime factors and their multiplicity.
+     */
+    //def primeFactorMultiplicity 
+
   }
 
   /**

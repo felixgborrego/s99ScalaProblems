@@ -35,10 +35,16 @@ class AritmeticUtilSpec extends FlatSpec with Matchers {
   "35.isCoprimeTo(64)" should "return true" in {
     assert(35.isCoprimeTo(64))
   }
-  
+
   info("P34 (**) Calculate Euler's totient function phi(m).")
-   "10.totient" should "return 4" in {
-     assert( 10.totient == 4)
-  }   
+  "10.totient" should "return 4" in {
+    assert(10.totient == 4)
+  }
+
+  info("P35 (**) Determine the prime factors of a given positive integer.")
+  "315.primeFactors" should "3, 3, 5, 7" in {
+    val expected = List(3, 3, 5, 7)
+    assert(expected == 315.primeFactors)
+  }
 
 }
