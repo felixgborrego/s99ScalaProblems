@@ -49,8 +49,15 @@ object AritmeticUtils {
     /**
      * P36 (**) Determine the prime factors of a given positive integer (2).
      * Construct a list containing the prime factors and their multiplicity.
+     * scala> 315.primeFactorMultiplicity
+     * res0: List[(Int, Int)] = List((3,2), (5,1), (7,1))
      */
-    //def primeFactorMultiplicity 
+    def primeFactorMultiplicity = {
+      primeFactors.groupBy(x => x).toList.map(t => (t._1, t._2.length)).sortBy(t => t._1)
+    }
+    def primeFactorMultiplicityMap = {
+      primeFactors.groupBy(x => x).map(t => (t._1, t._2.length))
+    }
 
   }
 

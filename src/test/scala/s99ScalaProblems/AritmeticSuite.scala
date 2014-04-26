@@ -47,4 +47,14 @@ class AritmeticUtilSpec extends FlatSpec with Matchers {
     assert(expected == 315.primeFactors)
   }
 
+  info("P36 (**) Determine the prime factors of a given positive integer (2).")
+  "315.primeFactorMultiplicity" should "List((3,2), (5,1), (7,1))" in {
+    val expected = List((3, 2), (5, 1), (7, 1))
+    assert(expected == 315.primeFactorMultiplicity)
+  }
+
+  "315.primeFactorMultiplicityMap" should "return a map" in {
+    val expectedMap = Map(3 -> 2, 5 -> 1, 7 -> 1)
+    assert(expectedMap == 315.primeFactorMultiplicityMap)
+  }
 }
