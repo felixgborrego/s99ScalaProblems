@@ -13,7 +13,6 @@ object AritmeticUtils {
      */
     def isPrime = {
       var r = (2 to (number - 1))
-      println("n:" + number + ": " + r)
       (2 to (number - 1)).forall(number % _ != 0)
     }
 
