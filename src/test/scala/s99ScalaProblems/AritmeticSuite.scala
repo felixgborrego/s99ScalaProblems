@@ -57,4 +57,11 @@ class AritmeticUtilSpec extends FlatSpec with Matchers {
     val expectedMap = Map(3 -> 2, 5 -> 1, 7 -> 1)
     assert(expectedMap == 315.primeFactorMultiplicityMap)
   }
+
+  info("P39 (*) A list of prime numbers.")
+  "listPrimesinRange" should "return a list of prime numbers" in {
+    val expected = List(7, 11, 13, 17, 19, 23, 29, 31)
+    assert(listPrimesinRange(7 to 31) == expected)
+  }
+
 }

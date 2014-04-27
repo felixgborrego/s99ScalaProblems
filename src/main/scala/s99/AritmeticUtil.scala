@@ -68,5 +68,12 @@ object AritmeticUtils {
     if (n2 == 0) n1 else gcd(n2, n1 % n2)
   }
 
+  /**
+   * P39 (*) A list of prime numbers.
+   * Given a range of integers by its lower and upper limit, construct a list of all prime numbers in that range.
+   * scala> listPrimesinRange(7 to 31)
+   * res0: List[Int] = List(7, 11, 13, 17, 19, 23, 29, 31)
+   */
+  def listPrimesinRange(r: Range) = r.toStream.filter(_.isPrime).toList
 }
 
